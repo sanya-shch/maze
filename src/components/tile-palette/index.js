@@ -7,7 +7,9 @@ export default function TilePalette({
   position,
   activeTile,
   setActiveTile,
-  setBgTile,
+  setBgLayer,
+  bgLayer,
+  exportData,
 }) {
   const tilesetData = require("../../data/tilesets.json");
 
@@ -69,18 +71,33 @@ export default function TilePalette({
 
         <div
           style={{
-            width: 200,
             marginLeft: 8,
           }}
         >
           <button
-            onClick={() => setBgTile(activeTile)}
+            onClick={() => setBgLayer((value) => !value)}
             style={{
               padding: "6px 20px",
               fontSize: 14,
             }}
           >
-            Fill BG
+            BG Layer {bgLayer ? "on" : "off"}
+          </button>
+        </div>
+
+        <div
+          style={{
+            marginLeft: 8,
+          }}
+        >
+          <button
+            onClick={exportData}
+            style={{
+              padding: "6px 20px",
+              fontSize: 14,
+            }}
+          >
+            Save
           </button>
         </div>
       </div>

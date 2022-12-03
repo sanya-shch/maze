@@ -8,7 +8,7 @@ export default function Map({
   activeTile,
   tileset,
   size,
-  bgTile,
+  bgLayer,
 }) {
   function cloneMatrix(m) {
     const clone = new Array(m.length);
@@ -23,10 +23,17 @@ export default function Map({
     setTiles((prev) => {
       const clone = cloneMatrix(prev);
 
-      clone[y][x] = {
-        ...clone[y][x],
-        v: activeTile,
-      };
+      if (bgLayer) {
+        clone[y][x] = {
+          ...clone[y][x],
+          v_bg: activeTile,
+        };
+      } else {
+        clone[y][x] = {
+          ...clone[y][x],
+          v: activeTile,
+        };
+      }
 
       return clone;
     });
@@ -50,7 +57,7 @@ export default function Map({
                 style={{
                   borderBottom: "1px solid #333",
                   borderRight: "1px solid #333",
-                  background: `url(/assets/maps/${tileset}.png) -${bgTile.x}px -${bgTile.y}px no-repeat`,
+                  background: `url(/assets/maps/${tileset}.png) -${tile.v_bg.x}px -${tile.v_bg.y}px no-repeat`,
                   width: SIZE,
                   height: SIZE,
                 }}
