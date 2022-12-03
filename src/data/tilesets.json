@@ -1,0 +1,20 @@
+{
+  "rpg-nature-tileset": {
+    "size": {
+      "height": 288,
+      "width": 640
+    }
+  },
+  "tileset_64": {
+    "size": {
+      "height": 192,
+      "width": 448
+    }
+  },
+  "tileset_96": {
+    "size": {
+      "height": 384,
+      "width": 672
+    }
+  }
+}
