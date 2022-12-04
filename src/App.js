@@ -8,7 +8,7 @@ import GamePage from "../src/screens/Game";
 
 function App() {
   const [gameLevel, setGameLevel] = useState(1);
-  const [playerSkin, setPlayerSkin] = useState("e1_96");
+  const [playerSkin, setPlayerSkin] = useState("m1_96");
   const [mapPart, setMapPart] = useState({ row: 0, column: 0 });
 
   return (
