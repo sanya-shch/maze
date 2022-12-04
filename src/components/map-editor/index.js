@@ -57,6 +57,34 @@ export default function Editor() {
     link.click();
   };
 
+  function cloneMatrix(m) {
+    const clone = new Array(m.length);
+
+    for (let i = 0; i < m.length; ++i) {
+      clone[i] = m[i].slice(0);
+    }
+    return clone;
+  }
+  function dropTile({ x, y }) {
+    setTiles((prev) => {
+      const clone = cloneMatrix(prev);
+
+      if (bgLayer) {
+        clone[y][x] = {
+          ...clone[y][x],
+          v_bg: activeTile,
+        };
+      } else {
+        clone[y][x] = {
+          ...clone[y][x],
+          v: activeTile,
+        };
+      }
+
+      return clone;
+    });
+  }
+
   return (
     <div
       style={{
@@ -81,9 +109,7 @@ export default function Editor() {
         tiles={tiles}
         tileset={levelData.tileset}
         size={mapSize}
-        activeTile={activeTile}
-        setTiles={setTiles}
-        bgLayer={bgLayer}
+        dropTile={dropTile}
       />
     </div>
   );

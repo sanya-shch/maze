@@ -4,41 +4,10 @@ import { SIZE } from "../../constants";
 
 export default function Map({
   tiles,
-  setTiles,
-  activeTile,
   tileset,
   size,
-  bgLayer,
+  dropTile,
 }) {
-  function cloneMatrix(m) {
-    const clone = new Array(m.length);
-
-    for (let i = 0; i < m.length; ++i) {
-      clone[i] = m[i].slice(0);
-    }
-    return clone;
-  }
-
-  function dropTile({ x, y }) {
-    setTiles((prev) => {
-      const clone = cloneMatrix(prev);
-
-      if (bgLayer) {
-        clone[y][x] = {
-          ...clone[y][x],
-          v_bg: activeTile,
-        };
-      } else {
-        clone[y][x] = {
-          ...clone[y][x],
-          v: activeTile,
-        };
-      }
-
-      return clone;
-    });
-  }
-
   return (
     <div
       style={{
@@ -53,7 +22,7 @@ export default function Map({
             {row.map((tile, x) => (
               <div
                 key={`map-${x}-${y}`}
-                onClick={() => dropTile({ x, y })}
+                onClick={() => dropTile?.({ x, y })}
                 style={{
                   borderBottom: "1px solid #333",
                   borderRight: "1px solid #333",
@@ -73,7 +42,7 @@ export default function Map({
             {row.map((tile, x) => (
               <div
                 key={`map-${x}-${y}`}
-                onClick={() => dropTile({ x, y })}
+                onClick={() => dropTile?.({ x, y })}
                 style={{
                   borderBottom: "1px solid #333",
                   borderRight: "1px solid #333",
