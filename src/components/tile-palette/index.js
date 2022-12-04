@@ -93,7 +93,7 @@ export default function TilePalette({
           }}
         >
           <button
-            onClick={setIsErase}
+            onClick={() => setIsErase((value) => !value)}
             style={{
               padding: "6px 20px",
               fontSize: 14,

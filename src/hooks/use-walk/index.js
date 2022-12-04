@@ -29,7 +29,7 @@ export default function useWalk(maxSteps, spriteSize, mapPartCount, mapSize) {
     if (position.y + modifier[dir].y >= mapSize) {
       // bottom
 
-      if (mapPartRow < mapPartCount) {
+      if (mapPartRow < mapPartCount - 1) {
         setPosition((prev) => ({
           x: prev.x,
           y: 0,
@@ -62,7 +62,7 @@ export default function useWalk(maxSteps, spriteSize, mapPartCount, mapSize) {
     } else if (position.x + modifier[dir].x >= mapSize) {
       // right
 
-      if (mapPartColumn < mapPartCount) {
+      if (mapPartColumn < mapPartCount - 1) {
         setPosition((prev) => ({
           x: 0,
           y: prev.y,

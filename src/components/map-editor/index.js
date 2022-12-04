@@ -8,7 +8,7 @@ import useDraggable from "../../hooks/use-draggable";
 import { SIZE } from "../../constants";
 import levelData from "../../data/levels/levels.json";
 
-const MAP_PART = { row: 1, column: 0 };
+const MAP_PART = { row: 0, column: 0 };
 const level = 1;
 
 export default function Editor() {
