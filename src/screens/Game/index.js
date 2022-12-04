@@ -1,27 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import "./style.css";
 
 import Player from "../../components/player";
 import Map from "../../components/map";
 
-function Game({ gameLevel, playerSkin, mapPart, setMapPart }) {
-  const levelData = require(`../../data/levels/level_${gameLevel}.json`);
-  const tilesData = require(`../../data/levels/level_${gameLevel}/part_${mapPart.row}_${mapPart.column}.json`);
+import { Context } from "../../store";
+import levelData from "../../data/levels/levels.json";
 
-  return (
+function Game({ gameLevel, playerSkin }) {
+  const { tilesData } = useContext(Context);
+
+  return tilesData ? (
     <div className="zone-container">
-      <Player skin={playerSkin} />
+      <Player
+        skin={playerSkin}
+        mapPartCount={levelData[gameLevel].mapSize}
+        tilesCount={levelData[gameLevel].tilesCount}
+        spriteSize={levelData[gameLevel].tileSize}
+      />
 
       <Map
         tiles={tilesData.tiles}
-        tileset={levelData.tileset}
+        tileset={levelData[gameLevel].tileset}
         size={{
-          width: levelData.size * 7,
-          height: levelData.size * 7,
+          width:
+            levelData[gameLevel].tileSize * levelData[gameLevel].tilesCount,
+          height:
+            levelData[gameLevel].tileSize * levelData[gameLevel].tilesCount,
         }}
       />
     </div>
+  ) : (
+    <div>Loading...</div>
   );
 }
 

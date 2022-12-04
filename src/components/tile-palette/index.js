@@ -10,6 +10,8 @@ export default function TilePalette({
   setBgLayer,
   bgLayer,
   exportData,
+  isErase,
+  setIsErase,
 }) {
   const tilesetData = require("../../data/tilesets.json");
 
@@ -91,13 +93,29 @@ export default function TilePalette({
           }}
         >
           <button
+            onClick={setIsErase}
+            style={{
+              padding: "6px 20px",
+              fontSize: 14,
+            }}
+          >
+            Erase {isErase ? "on" : "off"}
+          </button>
+        </div>
+
+        <div
+          style={{
+            marginLeft: 8,
+          }}
+        >
+          <button
             onClick={exportData}
             style={{
               padding: "6px 20px",
               fontSize: 14,
             }}
           >
-            Save
+            Export File
           </button>
         </div>
       </div>

@@ -6,12 +6,13 @@ import Map from "../map";
 import useDraggable from "../../hooks/use-draggable";
 
 import { SIZE } from "../../constants";
+import levelData from "../../data/levels/levels.json";
 
-const MAP_PART = { row: 0, column: 0 };
+const MAP_PART = { row: 1, column: 0 };
 const level = 1;
 
 export default function Editor() {
-  const levelData = require(`../../data/levels/level_${level}.json`);
+  // const levelData = require(`../../data/levels/level_${level}.json`);
   const tilesData = require(`../../data/levels/level_${level}/part_${MAP_PART.row}_${MAP_PART.column}.json`);
 
   const { position } = useDraggable("handle");
@@ -19,10 +20,11 @@ export default function Editor() {
   const [activeTile, setActiveTile] = useState({ x: 2 * SIZE, y: 4 * SIZE });
   const [tiles, setTiles] = useState(tilesData?.tiles || []);
   const [mapSize, setMapSize] = useState({
-    width: levelData.size * 7 || 672,
-    height: levelData.size * 7 || 672,
+    width: levelData[level].size * levelData[level].tilesCount,
+    height: levelData[level].size * levelData[level].tilesCount,
   });
   const [bgLayer, setBgLayer] = useState(false);
+  const [isErase, setIsErase] = useState(false);
 
   useEffect(() => {
     if (!tiles.length) {
@@ -70,15 +72,29 @@ export default function Editor() {
       const clone = cloneMatrix(prev);
 
       if (bgLayer) {
-        clone[y][x] = {
-          ...clone[y][x],
-          v_bg: activeTile,
-        };
+        if (isErase) {
+          clone[y][x] = {
+            ...clone[y][x],
+            v_bg: undefined,
+          };
+        } else {
+          clone[y][x] = {
+            ...clone[y][x],
+            v_bg: activeTile,
+          };
+        }
       } else {
-        clone[y][x] = {
-          ...clone[y][x],
-          v: activeTile,
-        };
+        if (isErase) {
+          clone[y][x] = {
+            ...clone[y][x],
+            v: undefined,
+          };
+        } else {
+          clone[y][x] = {
+            ...clone[y][x],
+            v: activeTile,
+          };
+        }
       }
 
       return clone;
@@ -97,17 +113,19 @@ export default function Editor() {
     >
       <TilePalette
         position={position}
-        tileset={levelData.tileset}
+        tileset={levelData[level].tileset}
         activeTile={activeTile}
         setActiveTile={setActiveTile}
         setBgLayer={setBgLayer}
         bgLayer={bgLayer}
         exportData={exportData}
+        isErase={isErase}
+        setIsErase={setIsErase}
       />
 
       <Map
         tiles={tiles}
-        tileset={levelData.tileset}
+        tileset={levelData[level].tileset}
         size={mapSize}
         dropTile={dropTile}
       />

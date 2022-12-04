@@ -2,12 +2,7 @@ import React from "react";
 
 import { SIZE } from "../../constants";
 
-export default function Map({
-  tiles,
-  tileset,
-  size,
-  dropTile,
-}) {
+export default function Map({ tiles, tileset, size, dropTile }) {
   return (
     <div
       style={{
@@ -24,11 +19,15 @@ export default function Map({
                 key={`map-${x}-${y}`}
                 onClick={() => dropTile?.({ x, y })}
                 style={{
-                  borderBottom: "1px solid #333",
-                  borderRight: "1px solid #333",
-                  background: `url(/assets/maps/${tileset}.png) -${tile.v_bg.x}px -${tile.v_bg.y}px no-repeat`,
+                  // borderBottom: "1px solid #333",
+                  // borderRight: "1px solid #333",
                   width: SIZE,
                   height: SIZE,
+                  ...(tile.v_bg
+                    ? {
+                        background: `url(/assets/maps/${tileset}.png) -${tile.v_bg.x}px -${tile.v_bg.y}px no-repeat`,
+                      }
+                    : {}),
                 }}
               />
             ))}
@@ -44,11 +43,15 @@ export default function Map({
                 key={`map-${x}-${y}`}
                 onClick={() => dropTile?.({ x, y })}
                 style={{
-                  borderBottom: "1px solid #333",
-                  borderRight: "1px solid #333",
-                  background: `url(/assets/maps/${tileset}.png) -${tile.v.x}px -${tile.v.y}px no-repeat`,
+                  // borderBottom: "1px solid #333",
+                  // borderRight: "1px solid #333",
                   width: SIZE,
                   height: SIZE,
+                  ...(tile.v
+                    ? {
+                        background: `url(/assets/maps/${tileset}.png) -${tile.v.x}px -${tile.v.y}px no-repeat`,
+                      }
+                    : {}),
                 }}
               />
             ))}

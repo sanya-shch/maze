@@ -5,12 +5,17 @@ import useWalk from "../../hooks/use-walk";
 
 import Actor from "../actor";
 
-function Player({ skin }) {
-  const { dir, step, walk, position } = useWalk(3);
+function Player({ skin, mapPartCount, tilesCount, spriteSize }) {
+  const { dir, step, walk, position } = useWalk(
+    3,
+    spriteSize,
+    mapPartCount,
+    spriteSize * tilesCount
+  );
 
   const data = {
-    h: 96,
-    w: 96,
+    h: spriteSize,
+    w: spriteSize,
   };
 
   useKeyPress((e) => {

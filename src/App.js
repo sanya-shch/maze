@@ -9,7 +9,6 @@ import GamePage from "../src/screens/Game";
 function App() {
   const [gameLevel, setGameLevel] = useState(1);
   const [playerSkin, setPlayerSkin] = useState("m1_96");
-  const [mapPart, setMapPart] = useState({ row: 0, column: 0 });
 
   return (
     <Routes>
@@ -26,14 +25,7 @@ function App() {
       />
       <Route
         path="/game"
-        element={
-          <GamePage
-            gameLevel={gameLevel}
-            playerSkin={playerSkin}
-            mapPart={mapPart}
-            setMapPart={setMapPart}
-          />
-        }
+        element={<GamePage gameLevel={gameLevel} playerSkin={playerSkin} />}
       />
     </Routes>
   );

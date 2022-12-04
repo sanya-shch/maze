@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { Context } from "../../store";
 
-export default function useWalk(maxSteps) {
+export default function useWalk(maxSteps, spriteSize, mapPartCount, mapSize) {
+  const { mapPartRow, mapPartColumn, setMapPartRow, setMapPartColumn } =
+    useContext(Context);
+
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [dir, setDir] = useState(0);
   const [step, setStep] = useState(0);
@@ -12,7 +16,7 @@ export default function useWalk(maxSteps) {
     up: 3,
   };
 
-  const stepSize = 96;
+  const stepSize = spriteSize;
 
   const modifier = {
     down: { x: 0, y: stepSize },
@@ -22,10 +26,56 @@ export default function useWalk(maxSteps) {
   };
 
   function move(dir) {
-    setPosition((prev) => ({
-      x: prev.x + modifier[dir].x,
-      y: prev.y + modifier[dir].y,
-    }));
+    if (position.y + modifier[dir].y >= mapSize) {
+      // bottom
+
+      if (mapPartRow < mapPartCount) {
+        setPosition((prev) => ({
+          x: prev.x,
+          y: 0,
+        }));
+
+        setMapPartRow((prev) => prev + 1);
+      }
+    } else if (position.y + modifier[dir].y < 0) {
+      // up
+
+      if (mapPartRow !== 0) {
+        setPosition((prev) => ({
+          x: prev.x,
+          y: mapSize - spriteSize,
+        }));
+
+        setMapPartRow((prev) => prev - 1);
+      }
+    } else if (position.x + modifier[dir].x < 0) {
+      // left
+
+      if (mapPartColumn !== 0) {
+        setPosition((prev) => ({
+          x: mapSize - spriteSize,
+          y: prev.y,
+        }));
+
+        setMapPartColumn((prev) => prev - 1);
+      }
+    } else if (position.x + modifier[dir].x >= mapSize) {
+      // right
+
+      if (mapPartColumn < mapPartCount) {
+        setPosition((prev) => ({
+          x: 0,
+          y: prev.y,
+        }));
+
+        setMapPartColumn((prev) => prev + 1);
+      }
+    } else {
+      setPosition((prev) => ({
+        x: prev.x + modifier[dir].x,
+        y: prev.y + modifier[dir].y,
+      }));
+    }
   }
 
   function walk(dir) {
