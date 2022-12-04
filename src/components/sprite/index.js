@@ -14,6 +14,7 @@ function Sprite({ image, data, position }) {
         backgroundImage: `url(${image})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: `-${x}px -${y}px`,
+        zIndex: 10,
       }}
     />
   );

@@ -1,0 +1,29 @@
+body {
+  font-size: 16px;
+  background-color: #000000;
+  color: white;
+  opacity: 0.8;
+}
+
+.zone-container {
+  box-sizing: border-box;
+  border: 4px solid white;
+  margin: 0.5rem auto;
+  /*width: 1000px;*/
+  /*height: 700px;*/
+  /*96*9*/
+  /*width: 864px;*/
+  /*height: 864px;*/
+  /*96*7*/
+  width: 672px;
+  height: 672px;
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  line-height: 32px;
+  height: 32px;
+}
