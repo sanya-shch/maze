@@ -5,34 +5,46 @@ import "./style.css";
 import Player from "../../components/player";
 import Map from "../../components/map";
 
-import { Context } from "../../store";
+import { GameContext } from "../../store";
 import levelData from "../../data/levels/levels.json";
 
-function Game({ gameLevel, playerSkin }) {
-  const { tilesData } = useContext(Context);
+function Game({ playerSkin }) {
+  const { tilesData, level } = useContext(GameContext);
 
-  return tilesData ? (
-    <div className="zone-container">
-      <Player
-        skin={playerSkin}
-        mapPartCount={levelData[gameLevel].mapSize}
-        tilesCount={levelData[gameLevel].tilesCount}
-        spriteSize={levelData[gameLevel].tileSize}
-      />
+  return (
+    <div
+      className="main-game-container"
+      style={{
+        minWidth:
+          levelData[level].tileSize * levelData[level].tilesCount,
+        minHeight:
+          levelData[level].tileSize * levelData[level].tilesCount,
+      }}
+    >
+      {tilesData ? (
+        <div className="zone-container">
+          <Player
+            skin={playerSkin}
+            mapPartCount={levelData[level].mapSize}
+            tilesCount={levelData[level].tilesCount}
+            spriteSize={levelData[level].tileSize}
+          />
 
-      <Map
-        tiles={tilesData.tiles}
-        tileset={levelData[gameLevel].tileset}
-        size={{
-          width:
-            levelData[gameLevel].tileSize * levelData[gameLevel].tilesCount,
-          height:
-            levelData[gameLevel].tileSize * levelData[gameLevel].tilesCount,
-        }}
-      />
+          <Map
+            tiles={tilesData.tiles}
+            tileset={levelData[level].tileset}
+            size={{
+              width:
+                levelData[level].tileSize * levelData[level].tilesCount,
+              height:
+                levelData[level].tileSize * levelData[level].tilesCount,
+            }}
+          />
+        </div>
+      ) : (
+        <div>Loading...</div>
+      )}
     </div>
-  ) : (
-    <div>Loading...</div>
   );
 }
 

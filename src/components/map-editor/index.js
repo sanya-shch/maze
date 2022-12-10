@@ -9,19 +9,21 @@ import { SIZE } from "../../constants";
 import levelData from "../../data/levels/levels.json";
 
 const MAP_PART = { row: 0, column: 0 };
-const level = 1;
+const level = "start";
 
 export default function Editor() {
   // const levelData = require(`../../data/levels/level_${level}.json`);
-  const tilesData = require(`../../data/levels/level_${level}/part_${MAP_PART.row}_${MAP_PART.column}.json`);
+  // const tilesData = require(`../../data/levels/level_${level}/part_${MAP_PART.row}_${MAP_PART.column}.json`);
+  const tilesData = require(`../../data/levels/level_${level}/map.json`);
+  // const tilesData = require(`../../data/levels/level_${level}/tiles_list.json`);
 
   const { position } = useDraggable("handle");
 
   const [activeTile, setActiveTile] = useState({ x: 2 * SIZE, y: 4 * SIZE });
   const [tiles, setTiles] = useState(tilesData?.tiles || []);
   const [mapSize, setMapSize] = useState({
-    width: levelData[level].size * levelData[level].tilesCount,
-    height: levelData[level].size * levelData[level].tilesCount,
+    width: levelData[level].tileSize * levelData[level].tilesCount,
+    height: levelData[level].tileSize * levelData[level].tilesCount,
   });
   const [bgLayer, setBgLayer] = useState(false);
   const [isErase, setIsErase] = useState(false);

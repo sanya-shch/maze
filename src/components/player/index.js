@@ -6,7 +6,7 @@ import useWalk from "../../hooks/use-walk";
 import Actor from "../actor";
 
 function Player({ skin, mapPartCount, tilesCount, spriteSize }) {
-  const { dir, step, walk, position } = useWalk(
+  const { dir, step, walk } = useWalk(
     3,
     spriteSize,
     mapPartCount,
@@ -19,9 +19,11 @@ function Player({ skin, mapPartCount, tilesCount, spriteSize }) {
   };
 
   useKeyPress((e) => {
-    const dir = e.key.replace("Arrow", "").toLowerCase();
+    if (/^Arrow/.test(e.key)) {
+      const dir = e.key.replace("Arrow", "").toLowerCase();
 
-    walk(dir);
+      walk(dir);
+    }
 
     e.preventDefault();
   });
@@ -32,7 +34,6 @@ function Player({ skin, mapPartCount, tilesCount, spriteSize }) {
       data={data}
       step={step}
       dir={dir}
-      position={position}
     />
   );
 }

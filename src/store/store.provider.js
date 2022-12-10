@@ -1,14 +1,42 @@
 import React, { useState, useMemo, useEffect } from "react";
 
-import { Context } from "./store.context.js";
+import { GameContext } from "./store.context.js";
 import { getMapFile } from "../helpers/getMapFile";
 
-function Provider({ children }) {
-  const [level, setLevel] = useState(1);
-  const [mapPartRow, setMapPartRow] = useState(0);
-  const [mapPartColumn, setMapPartColumn] = useState(0);
+import levelData from "../data/levels/levels.json";
+import tilesSetsData from "../data/tilesets.json";
+
+function GameProvider({ children }) {
+  const [level, setLevel] = useState("start");
+  const [mapPartRow, setMapPartRow] = useState(
+    levelData[level].startTileRow || 0
+  );
+  const [mapPartColumn, setMapPartColumn] = useState(
+    levelData[level].startTileColumn || 0
+  );
+
+  const [playerPositionX, setPlayerPositionX] = useState(
+    levelData[level].playerStartPositionX || 0
+  );
+  const [playerPositionY, setPlayerPositionY] = useState(
+    levelData[level].playerStartPositionY || 0
+  );
 
   const [tilesData, setTilesData] = useState(null);
+
+  const [tileSet, setTileSet] = useState(
+    levelData[level].tileset || "tileset_96"
+  );
+  const [mapSize, setMapSize] = useState(levelData[level].mapSize);
+  const [tilesCount, setTilesCount] = useState(levelData[level].tilesCount);
+  const [tileSize, setTileSize] = useState(levelData[level].tileSize);
+
+  const [impassableItems, setImpassableItems] = useState(
+    tilesSetsData[levelData[level].tileset].impassableItems
+  );
+
+  const [dir, setDir] = useState(levelData[level].dir);
+  const [step, setStep] = useState(levelData[level].step);
 
   useEffect(() => {
     async function fetchData() {
@@ -29,11 +57,42 @@ function Provider({ children }) {
       setMapPartRow,
       mapPartColumn,
       setMapPartColumn,
+
+      tileSet,
+      mapSize,
+      tilesCount,
+      tileSize,
+
+      playerPositionX,
+      setPlayerPositionX,
+      playerPositionY,
+      setPlayerPositionY,
+
+      impassableItems,
+
+      dir,
+      setDir,
+      step,
+      setStep,
     }),
-    [tilesData]
+    [
+      tilesData,
+      level,
+      mapPartRow,
+      mapPartColumn,
+      tileSet,
+      mapSize,
+      tilesCount,
+      tileSize,
+      playerPositionX,
+      playerPositionY,
+      impassableItems,
+      dir,
+      step,
+    ]
   );
 
-  return <Context.Provider value={value}>{children}</Context.Provider>;
+  return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
 }
 
-export default Provider;
+export default GameProvider;

@@ -1,13 +1,23 @@
-import { useState, useContext } from "react";
-import { Context } from "../../store";
+import { useContext } from "react";
+import { GameContext } from "../../store";
 
 export default function useWalk(maxSteps, spriteSize, mapPartCount, mapSize) {
-  const { mapPartRow, mapPartColumn, setMapPartRow, setMapPartColumn } =
-    useContext(Context);
-
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [dir, setDir] = useState(0);
-  const [step, setStep] = useState(0);
+  const {
+    mapPartRow,
+    mapPartColumn,
+    setMapPartRow,
+    setMapPartColumn,
+    playerPositionX,
+    setPlayerPositionX,
+    playerPositionY,
+    setPlayerPositionY,
+    tilesData,
+    impassableItems,
+    dir,
+    setDir,
+    step,
+    setStep,
+  } = useContext(GameContext);
 
   const directions = {
     down: 0,
@@ -25,74 +35,100 @@ export default function useWalk(maxSteps, spriteSize, mapPartCount, mapSize) {
     up: { x: 0, y: -stepSize },
   };
 
-  function move(dir) {
-    if (position.y + modifier[dir].y >= mapSize) {
+  const getNextPosition = (dir) => ({
+    x: (playerPositionX + modifier[dir].x) / spriteSize,
+    y: (playerPositionY + modifier[dir].y) / spriteSize,
+  });
+
+  const isCanMove = ({ x: nextX, y: nextY }) => {
+    const nextItem = tilesData.tiles[nextY]?.[nextX];
+    const isImpassableItem =
+      nextItem?.v &&
+      impassableItems.items.some(
+        (item) => item.x === nextItem.v.x && item.y === nextItem.v.y
+      );
+    const isImpassableBGItem =
+      nextItem?.v_bg &&
+      impassableItems.bg_items.some(
+        (item) => item.x === nextItem.v_bg.x && item.y === nextItem.v_bg.y
+      );
+
+    return !isImpassableItem && !isImpassableBGItem;
+  };
+
+  const move = (dir) => {
+    if (
+      playerPositionY + modifier[dir].y >= mapSize - spriteSize &&
+      dir === "down"
+    ) {
       // bottom
 
       if (mapPartRow < mapPartCount - 1) {
-        setPosition((prev) => ({
-          x: prev.x,
-          y: 0,
-        }));
+        setPlayerPositionY(spriteSize);
 
         setMapPartRow((prev) => prev + 1);
+      } else if (playerPositionY < mapSize - spriteSize) {
+        setPlayerPositionY((prev) => prev + modifier[dir].y);
       }
-    } else if (position.y + modifier[dir].y < 0) {
+    } else if (playerPositionY + modifier[dir].y < spriteSize && dir === "up") {
       // up
 
-      if (mapPartRow !== 0) {
-        setPosition((prev) => ({
-          x: prev.x,
-          y: mapSize - spriteSize,
-        }));
+      if (playerPositionY + modifier[dir].y < spriteSize && mapPartRow !== 0) {
+        setPlayerPositionY(mapSize - spriteSize * 2);
 
         setMapPartRow((prev) => prev - 1);
+      } else if (playerPositionY > 0) {
+        setPlayerPositionY((prev) => prev + modifier[dir].y);
       }
-    } else if (position.x + modifier[dir].x < 0) {
+    } else if (
+      playerPositionX + modifier[dir].x < spriteSize &&
+      dir === "left"
+    ) {
       // left
 
-      if (mapPartColumn !== 0) {
-        setPosition((prev) => ({
-          x: mapSize - spriteSize,
-          y: prev.y,
-        }));
+      if (
+        playerPositionX + modifier[dir].x < spriteSize &&
+        mapPartColumn !== 0
+      ) {
+        setPlayerPositionX(mapSize - spriteSize * 2);
 
         setMapPartColumn((prev) => prev - 1);
+      } else if (playerPositionX > 0) {
+        setPlayerPositionX((prev) => prev + modifier[dir].x);
       }
-    } else if (position.x + modifier[dir].x >= mapSize) {
+    } else if (
+      playerPositionX + modifier[dir].x >= mapSize - spriteSize &&
+      dir === "right"
+    ) {
       // right
 
       if (mapPartColumn < mapPartCount - 1) {
-        setPosition((prev) => ({
-          x: 0,
-          y: prev.y,
-        }));
+        setPlayerPositionX(spriteSize);
 
         setMapPartColumn((prev) => prev + 1);
+      } else if (playerPositionX < mapSize - spriteSize) {
+        setPlayerPositionX((prev) => prev + modifier[dir].x);
       }
     } else {
-      setPosition((prev) => ({
-        x: prev.x + modifier[dir].x,
-        y: prev.y + modifier[dir].y,
-      }));
+      setPlayerPositionX((prev) => prev + modifier[dir].x);
+      setPlayerPositionY((prev) => prev + modifier[dir].y);
     }
-  }
+  };
 
-  function walk(dir) {
+  const walk = (dir) => {
     setDir((prev) => {
-      if (directions[dir] === prev) {
+      if (directions[dir] === prev && isCanMove(getNextPosition(dir))) {
         move(dir);
       }
 
       return directions[dir];
     });
     setStep((prev) => (prev < maxSteps - 1 ? prev + 1 : 0));
-  }
+  };
 
   return {
     walk,
     dir,
     step,
-    position,
   };
 }

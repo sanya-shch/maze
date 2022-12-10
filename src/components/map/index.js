@@ -21,6 +21,7 @@ export default function Map({ tiles, tileset, size, dropTile }) {
                 style={{
                   // borderBottom: "1px solid #333",
                   // borderRight: "1px solid #333",
+                  // outline: "1px solid #23674e",
                   width: SIZE,
                   height: SIZE,
                   ...(tile.v_bg
