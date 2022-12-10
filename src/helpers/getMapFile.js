@@ -2,6 +2,12 @@ export const getMapFile = async (level, mapPartRow, mapPartColumn) => {
   let file = null;
 
   switch (`${level}_${mapPartRow}_${mapPartColumn}`) {
+    case "start_0_0":
+      file = await import(
+        /* webpackChunkName: "1_4_4" */ "../data/levels/level_start/map.json"
+        );
+      break;
+
     case "1_0_0":
       file = await import(
         /* webpackChunkName: "1_0_0" */ "../data/levels/level_1/part_0_0.json"

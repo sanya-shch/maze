@@ -3,6 +3,24 @@
     "tileset": "tileset_96",
     "mapSize": 5,
     "tilesCount": 7,
-    "tileSize": 96
+    "tileSize": 96,
+    "startTileRow": 4,
+    "startTileColumn": 2,
+    "playerStartPositionX": 288,
+    "playerStartPositionY": 480,
+    "dir": 3,
+    "step": 1
+  },
+  "start": {
+    "tileset": "tileset_96",
+    "mapSize": 1,
+    "tilesCount": 6,
+    "tileSize": 96,
+    "startTileRow": 0,
+    "startTileColumn": 0,
+    "playerStartPositionX": 96,
+    "playerStartPositionY": 384,
+    "dir": 0,
+    "step": 1
   }
 }
