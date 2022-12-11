@@ -5,7 +5,13 @@ import useWalk from "../../hooks/use-walk";
 
 import Actor from "../Actor";
 
-function Player({ skin, mapPartCount, tilesCount, spriteSize }) {
+function Player({
+  skin,
+  mapPartCount,
+  tilesCount,
+  spriteSize,
+  isCanWalk = true,
+}) {
   const { dir, step, walk } = useWalk(
     3,
     spriteSize,
@@ -22,7 +28,7 @@ function Player({ skin, mapPartCount, tilesCount, spriteSize }) {
     if (/^Arrow/.test(e.key)) {
       const dir = e.key.replace("Arrow", "").toLowerCase();
 
-      walk(dir);
+      isCanWalk && walk(dir);
     }
 
     e.preventDefault();
@@ -32,8 +38,8 @@ function Player({ skin, mapPartCount, tilesCount, spriteSize }) {
     <Actor
       sprite={`/assets/skins/${skin}.png`}
       data={data}
-      step={step}
-      dir={dir}
+      step={isCanWalk ? step : 1}
+      dir={isCanWalk ? dir : 0}
     />
   );
 }

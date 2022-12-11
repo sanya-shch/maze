@@ -8,6 +8,10 @@
     "startTileColumn": 2,
     "playerStartPositionX": 288,
     "playerStartPositionY": 480,
+    "finishTileRow": 0,
+    "finishTileColumn": 2,
+    "playerFinishPositionX": 288,
+    "playerFinishPositionY": 0,
     "dir": 3,
     "step": 1
   },

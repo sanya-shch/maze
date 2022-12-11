@@ -23,6 +23,19 @@ function GameProvider({ children }) {
     levelData[level].playerStartPositionY || 0
   );
 
+  const [playerFinishPositionX, setPlayerFinishPositionX] = useState(
+    levelData[level].playerFinishPositionX
+  );
+  const [playerFinishPositionY, setPlayerFinishPositionY] = useState(
+    levelData[level].playerFinishPositionY
+  );
+  const [finishTileRow, setFinishTileRow] = useState(
+    levelData[level].finishTileRow
+  );
+  const [finishTileColumn, setFinishTileColumn] = useState(
+    levelData[level].finishTileColumn
+  );
+
   const [tilesData, setTilesData] = useState(null);
 
   const [tileSet, setTileSet] = useState(
@@ -40,6 +53,7 @@ function GameProvider({ children }) {
   const [step, setStep] = useState(levelData[level].step);
 
   const [loading, setLoading] = useState(true);
+  const [isFinish, setIsFinish] = useState(false);
 
   useEffect(() => {
     setMapPartRow(levelData[level].startTileRow);
@@ -58,6 +72,11 @@ function GameProvider({ children }) {
 
     setDir(levelData[level].dir);
     setStep(levelData[level].step);
+
+    setPlayerFinishPositionX(levelData[level].playerFinishPositionX);
+    setPlayerFinishPositionY(levelData[level].playerFinishPositionY);
+    setFinishTileRow(levelData[level].finishTileRow);
+    setFinishTileColumn(levelData[level].finishTileColumn);
 
     setLoading(true);
   }, [level]);
@@ -104,6 +123,14 @@ function GameProvider({ children }) {
 
       loading,
       setLoading,
+
+      playerFinishPositionX,
+      playerFinishPositionY,
+      finishTileRow,
+      finishTileColumn,
+
+      isFinish,
+      setIsFinish,
     }),
     [
       tilesData,
@@ -120,6 +147,11 @@ function GameProvider({ children }) {
       dir,
       step,
       loading,
+      playerFinishPositionX,
+      playerFinishPositionY,
+      finishTileRow,
+      finishTileColumn,
+      isFinish,
     ]
   );
 
