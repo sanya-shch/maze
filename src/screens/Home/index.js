@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "./style.css";
 
 import { GameContext } from "../../store";
-import Player from "../../components/player";
+import Player from "../../components/Player";
 import levelData from "../../data/levels/levels";
-import Map from "../../components/map";
+import Map from "../../components/Map";
 import useKeyPress from "../../hooks/use-key-press";
 import { SKINS_LIST } from "../../constants";
+import Loader from "../../components/Loader";
 
 const Text = ({ value }) => (
   <div className="text">
@@ -22,11 +24,14 @@ const Text = ({ value }) => (
 );
 
 function Home({ playerSkin, setPlayerSkin }) {
-  const { tilesData, level } = useContext(GameContext);
+  const navigate = useNavigate();
+  const { tilesData, level, setLevel } = useContext(GameContext);
 
   useKeyPress((e) => {
     if (e.key === "Enter") {
-      console.log("start");
+      setLevel(1);
+
+      navigate("/game");
     } else if (e.key === " ") {
       const index = SKINS_LIST.findIndex((item) => item === playerSkin);
 
@@ -70,7 +75,14 @@ function Home({ playerSkin, setPlayerSkin }) {
           />
         </div>
       ) : (
-        <div>Loading...</div>
+        <div
+          style={{
+            width: levelData[level].tileSize * levelData[level].tilesCount,
+            height: levelData[level].tileSize * levelData[level].tilesCount,
+          }}
+        >
+          <Loader />
+        </div>
       )}
 
       <div className="info">

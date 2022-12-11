@@ -7,7 +7,7 @@ import "./index.css";
 import Store from "./store";
 
 import App from "./App";
-// import Editor from "./components/map-editor"
+// import Editor from "./components/Editor"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -48,6 +48,25 @@ function GameProvider({ children }) {
     fetchData();
   }, [level, mapPartRow, mapPartColumn]);
 
+  useEffect(() => {
+    setMapPartRow(levelData[level].startTileRow);
+    setMapPartColumn(levelData[level].startTileColumn);
+
+    setPlayerPositionX(levelData[level].playerStartPositionX);
+    setPlayerPositionY(levelData[level].playerStartPositionY);
+
+    setTileSet(levelData[level].tileset);
+
+    setMapSize(levelData[level].mapSize);
+    setTilesCount(levelData[level].tilesCount);
+    setTileSize(levelData[level].tileSize);
+
+    setImpassableItems(tilesSetsData[levelData[level].tileset].impassableItems);
+
+    setDir(levelData[level].dir);
+    setStep(levelData[level].step);
+  }, [level, levelData]);
+
   const value = useMemo(
     () => ({
       tilesData,

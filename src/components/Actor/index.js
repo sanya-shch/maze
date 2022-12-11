@@ -1,5 +1,5 @@
 import React from "react";
-import Sprite from "../sprite";
+import Sprite from "../Sprite";
 
 function Actor({ sprite, data, step = 0, dir = 0 }) {
   const { h, w } = data;

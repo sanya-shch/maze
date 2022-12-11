@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap");
-
 .main-home-container {
   background-color: #0d7cb5;
   display: flex;
@@ -37,7 +35,6 @@
   display: flex;
 }
 .text .letter .source {
-  /*color: gray;*/
   color: #249fde;
   -webkit-text-stroke: 0.01em rgba(0, 0, 0, 0.3);
   display: flex;
@@ -52,7 +49,6 @@
 }
 .text .letter .overlay {
   background-image: linear-gradient(90deg, white 50%, #eff0eb);
-  /*background-image: linear-gradient(90deg, #0d7cb5 50%, #0d7cb5);*/
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transform: rotateY(-30deg) skew(0, -10deg);

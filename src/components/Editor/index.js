@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import TilePalette from "../tile-palette";
-import Map from "../map";
+import TilePalette from "../TilePalette";
+import Map from "../Map";
 
 import useDraggable from "../../hooks/use-draggable";
 

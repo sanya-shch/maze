@@ -3,7 +3,7 @@ import React from "react";
 import useKeyPress from "../../hooks/use-key-press";
 import useWalk from "../../hooks/use-walk";
 
-import Actor from "../actor";
+import Actor from "../Actor";
 
 function Player({ skin, mapPartCount, tilesCount, spriteSize }) {
   const { dir, step, walk } = useWalk(

@@ -1,26 +1,25 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "./style.css";
 
-import Player from "../../components/player";
-import Map from "../../components/map";
+import Player from "../../components/Player";
+import Map from "../../components/Map";
 
 import { GameContext } from "../../store";
 import levelData from "../../data/levels/levels.json";
+import Loader from "../../components/Loader";
 
 function Game({ playerSkin }) {
+  const navigate = useNavigate();
   const { tilesData, level } = useContext(GameContext);
 
   return (
-    <div
-      className="main-game-container"
-      style={{
-        minWidth:
-          levelData[level].tileSize * levelData[level].tilesCount,
-        minHeight:
-          levelData[level].tileSize * levelData[level].tilesCount,
-      }}
-    >
+    <div className="main-game-container">
+      <button className="title" onClick={() => navigate("/")}>
+        The MAZE Game
+      </button>
+
       {tilesData ? (
         <div className="zone-container">
           <Player
@@ -34,15 +33,20 @@ function Game({ playerSkin }) {
             tiles={tilesData.tiles}
             tileset={levelData[level].tileset}
             size={{
-              width:
-                levelData[level].tileSize * levelData[level].tilesCount,
-              height:
-                levelData[level].tileSize * levelData[level].tilesCount,
+              width: levelData[level].tileSize * levelData[level].tilesCount,
+              height: levelData[level].tileSize * levelData[level].tilesCount,
             }}
           />
         </div>
       ) : (
-        <div>Loading...</div>
+        <div
+          style={{
+            width: levelData[level].tileSize * levelData[level].tilesCount,
+            height: levelData[level].tileSize * levelData[level].tilesCount,
+          }}
+        >
+          <Loader isFullScreen={false} />
+        </div>
       )}
     </div>
   );
