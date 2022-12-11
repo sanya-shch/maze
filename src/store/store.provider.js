@@ -2,12 +2,13 @@ import React, { useState, useMemo, useEffect } from "react";
 
 import { GameContext } from "./store.context.js";
 import { getMapFile } from "../helpers/getMapFile";
+import { getLSValue } from "../helpers/getLSValue";
 
 import levelData from "../data/levels/levels.json";
 import tilesSetsData from "../data/tilesets.json";
 
 function GameProvider({ children }) {
-  const [level, setLevel] = useState("start");
+  const [level, setLevel] = useState(getLSValue("level", "start"));
   const [mapPartRow, setMapPartRow] = useState(
     levelData[level].startTileRow || 0
   );
@@ -38,15 +39,7 @@ function GameProvider({ children }) {
   const [dir, setDir] = useState(levelData[level].dir);
   const [step, setStep] = useState(levelData[level].step);
 
-  useEffect(() => {
-    async function fetchData() {
-      const file = await getMapFile(level, mapPartRow, mapPartColumn);
-
-      setTilesData(file);
-    }
-
-    fetchData();
-  }, [level, mapPartRow, mapPartColumn]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setMapPartRow(levelData[level].startTileRow);
@@ -65,7 +58,22 @@ function GameProvider({ children }) {
 
     setDir(levelData[level].dir);
     setStep(levelData[level].step);
-  }, [level, levelData]);
+
+    setLoading(true);
+  }, [level]);
+
+  async function fetchData() {
+    const file = await getMapFile(level, mapPartRow, mapPartColumn);
+
+    setTilesData(file);
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    if (loading) {
+      fetchData();
+    }
+  }, [loading, mapPartRow, mapPartColumn]);
 
   const value = useMemo(
     () => ({
@@ -93,6 +101,9 @@ function GameProvider({ children }) {
       setDir,
       step,
       setStep,
+
+      loading,
+      setLoading,
     }),
     [
       tilesData,
@@ -108,6 +119,7 @@ function GameProvider({ children }) {
       impassableItems,
       dir,
       step,
+      loading,
     ]
   );
 

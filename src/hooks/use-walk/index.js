@@ -17,6 +17,7 @@ export default function useWalk(maxSteps, spriteSize, mapPartCount, mapSize) {
     setDir,
     step,
     setStep,
+    setLoading,
   } = useContext(GameContext);
 
   const directions = {
@@ -67,6 +68,7 @@ export default function useWalk(maxSteps, spriteSize, mapPartCount, mapSize) {
         setPlayerPositionY(spriteSize);
 
         setMapPartRow((prev) => prev + 1);
+        setLoading(true);
       } else if (playerPositionY < mapSize - spriteSize) {
         setPlayerPositionY((prev) => prev + modifier[dir].y);
       }
@@ -77,6 +79,7 @@ export default function useWalk(maxSteps, spriteSize, mapPartCount, mapSize) {
         setPlayerPositionY(mapSize - spriteSize * 2);
 
         setMapPartRow((prev) => prev - 1);
+        setLoading(true);
       } else if (playerPositionY > 0) {
         setPlayerPositionY((prev) => prev + modifier[dir].y);
       }
@@ -93,6 +96,7 @@ export default function useWalk(maxSteps, spriteSize, mapPartCount, mapSize) {
         setPlayerPositionX(mapSize - spriteSize * 2);
 
         setMapPartColumn((prev) => prev - 1);
+        setLoading(true);
       } else if (playerPositionX > 0) {
         setPlayerPositionX((prev) => prev + modifier[dir].x);
       }
@@ -106,6 +110,7 @@ export default function useWalk(maxSteps, spriteSize, mapPartCount, mapSize) {
         setPlayerPositionX(spriteSize);
 
         setMapPartColumn((prev) => prev + 1);
+        setLoading(true);
       } else if (playerPositionX < mapSize - spriteSize) {
         setPlayerPositionX((prev) => prev + modifier[dir].x);
       }

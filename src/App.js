@@ -3,9 +3,12 @@ import { Routes, Route } from "react-router-dom";
 
 import HomePage from "../src/screens/Home";
 import GamePage from "../src/screens/Game";
+import { getLSValue } from "./helpers/getLSValue";
 
 function App() {
-  const [playerSkin, setPlayerSkin] = useState("m1_96");
+  const [playerSkin, setPlayerSkin] = useState(
+    getLSValue("playerSkin", "m1_96")
+  );
 
   return (
     <Routes>

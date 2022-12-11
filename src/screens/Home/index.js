@@ -8,8 +8,9 @@ import Player from "../../components/Player";
 import levelData from "../../data/levels/levels";
 import Map from "../../components/Map";
 import useKeyPress from "../../hooks/use-key-press";
-import { SKINS_LIST } from "../../constants";
+import { LEVELS_LIST, SKINS_LIST } from "../../constants";
 import Loader from "../../components/Loader";
+import { setLSValue } from "../../helpers/setLSValue";
 
 const Text = ({ value }) => (
   <div className="text">
@@ -25,17 +26,22 @@ const Text = ({ value }) => (
 
 function Home({ playerSkin, setPlayerSkin }) {
   const navigate = useNavigate();
-  const { tilesData, level, setLevel } = useContext(GameContext);
+  const { tilesData, level, setLevel, loading } = useContext(GameContext);
 
   useKeyPress((e) => {
     if (e.key === "Enter") {
-      setLevel(1);
+      setLevel(LEVELS_LIST[0]);
+      setLSValue("level", LEVELS_LIST[0]);
 
       navigate("/game");
     } else if (e.key === " ") {
       const index = SKINS_LIST.findIndex((item) => item === playerSkin);
 
       setPlayerSkin(
+        SKINS_LIST[index + 1 === SKINS_LIST.length ? 0 : index + 1]
+      );
+      setLSValue(
+        "playerSkin",
         SKINS_LIST[index + 1 === SKINS_LIST.length ? 0 : index + 1]
       );
     }
@@ -50,7 +56,16 @@ function Home({ playerSkin, setPlayerSkin }) {
         <Text value="MAZE" />
         <Text value="Game" />
       </div>
-      {tilesData ? (
+      {loading || !tilesData?.tiles?.length ? (
+        <div
+          style={{
+            width: levelData[level].tileSize * levelData[level].tilesCount,
+            height: levelData[level].tileSize * levelData[level].tilesCount,
+          }}
+        >
+          <Loader isFullScreen={false} />
+        </div>
+      ) : (
         <div
           className="start-zone-container"
           style={{
@@ -73,15 +88,6 @@ function Home({ playerSkin, setPlayerSkin }) {
               height: levelData[level].tileSize * levelData[level].tilesCount,
             }}
           />
-        </div>
-      ) : (
-        <div
-          style={{
-            width: levelData[level].tileSize * levelData[level].tilesCount,
-            height: levelData[level].tileSize * levelData[level].tilesCount,
-          }}
-        >
-          <Loader />
         </div>
       )}
 
