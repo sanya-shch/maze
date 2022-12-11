@@ -62,15 +62,15 @@ function GameProvider({ children }) {
     setLoading(true);
   }, [level]);
 
-  async function fetchData() {
-    const file = await getMapFile(level, mapPartRow, mapPartColumn);
-
-    setTilesData(file);
-    setLoading(false);
-  }
-
   useEffect(() => {
     if (loading) {
+      async function fetchData() {
+        const file = await getMapFile(level, mapPartRow, mapPartColumn);
+
+        setTilesData(file);
+        setLoading(false);
+      }
+
       fetchData();
     }
   }, [loading, mapPartRow, mapPartColumn]);
