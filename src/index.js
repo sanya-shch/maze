@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+// import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 import "./index.css";
 
@@ -11,12 +12,12 @@ import App from "./App";
 
 ReactDOM.render(
   <Store>
-    <BrowserRouter>
+    <HashRouter>
       <React.StrictMode>
         <App />
         {/*<Editor />*/}
       </React.StrictMode>
-    </BrowserRouter>
+    </HashRouter>
   </Store>,
   document.getElementById("root")
 );
