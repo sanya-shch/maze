@@ -2,17 +2,23 @@
   "name": "maze",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://sanya-shch.github.io/maze/",
   "dependencies": {
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-router-dom": "6.4.4",
     "react-scripts": "5.0.1"
   },
+  "devDependencies": {
+    "gh-pages": "4.0.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
