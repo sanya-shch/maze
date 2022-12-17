@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/maze/static/css/main.d3521f07.css",
-    "main.js": "/maze/static/js/main.377c8d54.js",
+    "main.js": "/maze/static/js/main.b356835d.js",
     "start_0_0.js": "/maze/static/js/start_0_0.3660a321.chunk.js",
     "1_0_0.js": "/maze/static/js/1_0_0.2e6e2660.chunk.js",
     "1_0_1.js": "/maze/static/js/1_0_1.61389c53.chunk.js",
@@ -75,15 +75,26 @@
     "3_3_4.js": "/maze/static/js/3_3_4.dc5a48b5.chunk.js",
     "3_4_0.js": "/maze/static/js/3_4_0.eff3b5f8.chunk.js",
     "3_4_1.js": "/maze/static/js/3_4_1.f4508b45.chunk.js",
-    "3_4_2.js": "/maze/static/js/3_4_2.9799bdff.chunk.js",
+    "3_4_2.js": "/maze/static/js/3_4_2.b4f6162e.chunk.js",
     "3_4_3.js": "/maze/static/js/3_4_3.44547785.chunk.js",
     "3_4_4.js": "/maze/static/js/3_4_4.2dbed7ea.chunk.js",
+    "e1_96.js": "/maze/static/js/e1_96.e2a255e7.chunk.js",
+    "f1_96.js": "/maze/static/js/f1_96.1e5fc52a.chunk.js",
+    "f2_96.js": "/maze/static/js/f2_96.895a02ac.chunk.js",
+    "m1_96.js": "/maze/static/js/m1_96.2efd3d3a.chunk.js",
+    "m2_96.js": "/maze/static/js/m2_96.1862052a.chunk.js",
+    "tileset_96.js": "/maze/static/js/tileset_96.e16192e3.chunk.js",
+    "static/media/m2_96.png": "/maze/static/media/m2_96.076ef9005fc495674784.png",
+    "static/media/m1_96.png": "/maze/static/media/m1_96.aeb1d6c690bdb72c526b.png",
+    "static/media/f2_96.png": "/maze/static/media/f2_96.747d852d7a7c92facf3a.png",
+    "static/media/f1_96.png": "/maze/static/media/f1_96.058c2c513543e599056a.png",
+    "static/media/tileset_96.png": "/maze/static/media/tileset_96.fdb9c66db54ca8397f65.png",
     "index.html": "/maze/index.html",
     "main.d3521f07.css.map": "/maze/static/css/main.d3521f07.css.map",
-    "main.377c8d54.js.map": "/maze/static/js/main.377c8d54.js.map"
+    "main.b356835d.js.map": "/maze/static/js/main.b356835d.js.map"
   },
   "entrypoints": [
     "static/css/main.d3521f07.css",
-    "static/js/main.377c8d54.js"
+    "static/js/main.b356835d.js"
   ]
 }

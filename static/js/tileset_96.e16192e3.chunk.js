@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmaze=self.webpackChunkmaze||[]).push([[7521],{6806:function(e,s,t){e.exports=t.p+"static/media/tileset_96.fdb9c66db54ca8397f65.png"}}]);

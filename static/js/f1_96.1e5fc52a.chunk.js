@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmaze=self.webpackChunkmaze||[]).push([[7289],{2488:function(e,a,c){e.exports=c.p+"static/media/f1_96.058c2c513543e599056a.png"}}]);
