@@ -9,12 +9,13 @@ import { SIZE } from "../../constants";
 import levelData from "../../data/levels/levels.json";
 
 const MAP_PART = { row: 0, column: 0 };
-const level = "start";
+const level = "4";
 
 export default function Editor() {
   // const levelData = require(`../../data/levels/level_${level}.json`);
   // const tilesData = require(`../../data/levels/level_${level}/part_${MAP_PART.row}_${MAP_PART.column}.json`);
-  const tilesData = require(`../../data/levels/level_${level}/map.json`);
+  const tilesData = null ;
+  // const tilesData = require(`../../data/levels/level_${level}/map.json`);
   // const tilesData = require(`../../data/levels/level_${level}/tiles_list.json`);
 
   const { position } = useDraggable("handle");

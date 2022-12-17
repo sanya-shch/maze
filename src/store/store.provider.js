@@ -78,6 +78,8 @@ function GameProvider({ children }) {
     setFinishTileRow(levelData[level].finishTileRow);
     setFinishTileColumn(levelData[level].finishTileColumn);
 
+    setIsFinish(false);
+
     setLoading(true);
   }, [level]);
 

@@ -138,6 +138,266 @@ export const getMapFile = async (level, mapPartRow, mapPartColumn) => {
       );
       break;
 
+    case "2_0_0":
+      file = await import(
+        /* webpackChunkName: "2_0_0" */ "../data/levels/level_2/part_0_0.json"
+        );
+      break;
+    case "2_0_1":
+      file = await import(
+        /* webpackChunkName: "2_0_1" */ "../data/levels/level_2/part_0_1.json"
+        );
+      break;
+    case "2_0_2":
+      file = await import(
+        /* webpackChunkName: "2_0_2" */ "../data/levels/level_2/part_0_2.json"
+        );
+      break;
+    case "2_0_3":
+      file = await import(
+        /* webpackChunkName: "2_0_3" */ "../data/levels/level_2/part_0_3.json"
+        );
+      break;
+    case "2_0_4":
+      file = await import(
+        /* webpackChunkName: "2_0_4" */ "../data/levels/level_2/part_0_4.json"
+        );
+      break;
+
+    case "2_1_0":
+      file = await import(
+        /* webpackChunkName: "2_1_0" */ "../data/levels/level_2/part_1_0.json"
+        );
+      break;
+    case "2_1_1":
+      file = await import(
+        /* webpackChunkName: "2_1_1" */ "../data/levels/level_2/part_1_1.json"
+        );
+      break;
+    case "2_1_2":
+      file = await import(
+        /* webpackChunkName: "2_1_2" */ "../data/levels/level_2/part_1_2.json"
+        );
+      break;
+    case "2_1_3":
+      file = await import(
+        /* webpackChunkName: "2_1_3" */ "../data/levels/level_2/part_1_3.json"
+        );
+      break;
+    case "2_1_4":
+      file = await import(
+        /* webpackChunkName: "2_1_4" */ "../data/levels/level_2/part_1_4.json"
+        );
+      break;
+
+    case "2_2_0":
+      file = await import(
+        /* webpackChunkName: "2_2_0" */ "../data/levels/level_2/part_2_0.json"
+        );
+      break;
+    case "2_2_1":
+      file = await import(
+        /* webpackChunkName: "2_2_1" */ "../data/levels/level_2/part_2_1.json"
+        );
+      break;
+    case "2_2_2":
+      file = await import(
+        /* webpackChunkName: "2_2_2" */ "../data/levels/level_2/part_2_2.json"
+        );
+      break;
+    case "2_2_3":
+      file = await import(
+        /* webpackChunkName: "2_2_3" */ "../data/levels/level_2/part_2_3.json"
+        );
+      break;
+    case "2_2_4":
+      file = await import(
+        /* webpackChunkName: "2_2_4" */ "../data/levels/level_2/part_2_4.json"
+        );
+      break;
+
+    case "2_3_0":
+      file = await import(
+        /* webpackChunkName: "2_3_0" */ "../data/levels/level_2/part_3_0.json"
+        );
+      break;
+    case "2_3_1":
+      file = await import(
+        /* webpackChunkName: "2_3_1" */ "../data/levels/level_2/part_3_1.json"
+        );
+      break;
+    case "2_3_2":
+      file = await import(
+        /* webpackChunkName: "2_3_2" */ "../data/levels/level_2/part_3_2.json"
+        );
+      break;
+    case "2_3_3":
+      file = await import(
+        /* webpackChunkName: "2_3_3" */ "../data/levels/level_2/part_3_3.json"
+        );
+      break;
+    case "2_3_4":
+      file = await import(
+        /* webpackChunkName: "2_3_4" */ "../data/levels/level_2/part_3_4.json"
+        );
+      break;
+
+    case "2_4_0":
+      file = await import(
+        /* webpackChunkName: "2_4_0" */ "../data/levels/level_2/part_4_0.json"
+        );
+      break;
+    case "2_4_1":
+      file = await import(
+        /* webpackChunkName: "2_4_1" */ "../data/levels/level_2/part_4_1.json"
+        );
+      break;
+    case "2_4_2":
+      file = await import(
+        /* webpackChunkName: "2_4_2" */ "../data/levels/level_2/part_4_2.json"
+        );
+      break;
+    case "2_4_3":
+      file = await import(
+        /* webpackChunkName: "2_4_3" */ "../data/levels/level_2/part_4_3.json"
+        );
+      break;
+    case "2_4_4":
+      file = await import(
+        /* webpackChunkName: "2_4_4" */ "../data/levels/level_2/part_4_4.json"
+        );
+      break;
+
+    case "3_0_0":
+      file = await import(
+        /* webpackChunkName: "3_0_0" */ "../data/levels/level_3/part_0_0.json"
+        );
+      break;
+    case "3_0_1":
+      file = await import(
+        /* webpackChunkName: "3_0_1" */ "../data/levels/level_3/part_0_1.json"
+        );
+      break;
+    case "3_0_2":
+      file = await import(
+        /* webpackChunkName: "3_0_2" */ "../data/levels/level_3/part_0_2.json"
+        );
+      break;
+    case "3_0_3":
+      file = await import(
+        /* webpackChunkName: "3_0_3" */ "../data/levels/level_3/part_0_3.json"
+        );
+      break;
+    case "3_0_4":
+      file = await import(
+        /* webpackChunkName: "3_0_4" */ "../data/levels/level_3/part_0_4.json"
+        );
+      break;
+
+    case "3_1_0":
+      file = await import(
+        /* webpackChunkName: "3_1_0" */ "../data/levels/level_3/part_1_0.json"
+        );
+      break;
+    case "3_1_1":
+      file = await import(
+        /* webpackChunkName: "3_1_1" */ "../data/levels/level_3/part_1_1.json"
+        );
+      break;
+    case "3_1_2":
+      file = await import(
+        /* webpackChunkName: "3_1_2" */ "../data/levels/level_3/part_1_2.json"
+        );
+      break;
+    case "3_1_3":
+      file = await import(
+        /* webpackChunkName: "3_1_3" */ "../data/levels/level_3/part_1_3.json"
+        );
+      break;
+    case "3_1_4":
+      file = await import(
+        /* webpackChunkName: "3_1_4" */ "../data/levels/level_3/part_1_4.json"
+        );
+      break;
+
+    case "3_2_0":
+      file = await import(
+        /* webpackChunkName: "3_2_0" */ "../data/levels/level_3/part_2_0.json"
+        );
+      break;
+    case "3_2_1":
+      file = await import(
+        /* webpackChunkName: "3_2_1" */ "../data/levels/level_3/part_2_1.json"
+        );
+      break;
+    case "3_2_2":
+      file = await import(
+        /* webpackChunkName: "3_2_2" */ "../data/levels/level_3/part_2_2.json"
+        );
+      break;
+    case "3_2_3":
+      file = await import(
+        /* webpackChunkName: "3_2_3" */ "../data/levels/level_3/part_2_3.json"
+        );
+      break;
+    case "3_2_4":
+      file = await import(
+        /* webpackChunkName: "3_2_4" */ "../data/levels/level_3/part_2_4.json"
+        );
+      break;
+
+    case "3_3_0":
+      file = await import(
+        /* webpackChunkName: "3_3_0" */ "../data/levels/level_3/part_3_0.json"
+        );
+      break;
+    case "3_3_1":
+      file = await import(
+        /* webpackChunkName: "3_3_1" */ "../data/levels/level_3/part_3_1.json"
+        );
+      break;
+    case "3_3_2":
+      file = await import(
+        /* webpackChunkName: "3_3_2" */ "../data/levels/level_3/part_3_2.json"
+        );
+      break;
+    case "3_3_3":
+      file = await import(
+        /* webpackChunkName: "3_3_3" */ "../data/levels/level_3/part_3_3.json"
+        );
+      break;
+    case "3_3_4":
+      file = await import(
+        /* webpackChunkName: "3_3_4" */ "../data/levels/level_3/part_3_4.json"
+        );
+      break;
+
+    case "3_4_0":
+      file = await import(
+        /* webpackChunkName: "3_4_0" */ "../data/levels/level_3/part_4_0.json"
+        );
+      break;
+    case "3_4_1":
+      file = await import(
+        /* webpackChunkName: "3_4_1" */ "../data/levels/level_3/part_4_1.json"
+        );
+      break;
+    case "3_4_2":
+      file = await import(
+        /* webpackChunkName: "3_4_2" */ "../data/levels/level_3/part_4_2.json"
+        );
+      break;
+    case "3_4_3":
+      file = await import(
+        /* webpackChunkName: "3_4_3" */ "../data/levels/level_3/part_4_3.json"
+        );
+      break;
+    case "3_4_4":
+      file = await import(
+        /* webpackChunkName: "3_4_4" */ "../data/levels/level_3/part_4_4.json"
+        );
+      break;
+
     default:
       file = null;
   }

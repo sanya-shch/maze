@@ -31,41 +31,32 @@ function Game({ playerSkin }) {
     setIsFinish,
   } = useContext(GameContext);
 
-  const [count, setCount] = useState(5);
-  const [isCanWalk, setIsCanWalk] = useState(true);
-  useEffect(() => {
-    let timeout = null;
+  const [count, setCount] = useState(0);
 
+  useEffect(() => {
     if (
       mapPartRow === finishTileRow &&
       mapPartColumn === finishTileColumn &&
       playerFinishPositionX === playerPositionX &&
       playerFinishPositionY === playerPositionY
     ) {
-      setIsFinish(true);
-      setIsCanWalk(false);
-      timeout = setTimeout(() => setCount((value) => --value), 1000);
-    }
+      if (!isFinish && count === 0) {
+        setCount(5);
+        setIsFinish(true);
+      }
 
-    if (count <= 0) {
-      clearTimeout(timeout);
-      setIsCanWalk(true);
-      setIsFinish(false);
-
-      if (level !== LEVELS_LIST.at(-1)) {
-        const index = LEVELS_LIST.findIndex(item => item === level);
-        setLSValue("level", LEVELS_LIST[index + 1]);
-        setLevel(LEVELS_LIST[index + 1]);
-      } else {
-        setLSValue("level", "start");
-        setLevel("start");
-        navigate("/");
+      if (isFinish && count === 0) {
+        if (level !== LEVELS_LIST.at(-1)) {
+          const index = LEVELS_LIST.findIndex((item) => item === level);
+          setLSValue("level", LEVELS_LIST[index + 1]);
+          setLevel(LEVELS_LIST[index + 1]);
+        } else {
+          setLSValue("level", "start");
+          setLevel("start");
+          navigate("/");
+        }
       }
     }
-
-    return () => {
-      clearTimeout(timeout);
-    };
   }, [
     mapPartRow,
     finishTileRow,
@@ -75,12 +66,21 @@ function Game({ playerSkin }) {
     playerPositionX,
     playerFinishPositionY,
     playerPositionY,
+    isFinish,
     count,
-    navigate,
-    setLevel,
-    setIsFinish,
-    level,
   ]);
+
+  React.useEffect(() => {
+    const TimerInt =
+      count > 0 &&
+      setInterval(() => {
+        setCount((cnt) => cnt - 1);
+      }, 1000);
+
+    return () => {
+      clearInterval(TimerInt);
+    };
+  }, [count]);
 
   const handleClickTitle = () => {
     setLSValue("level", "start");
@@ -110,7 +110,7 @@ function Game({ playerSkin }) {
             mapPartCount={levelData[level].mapSize}
             tilesCount={levelData[level].tilesCount}
             spriteSize={levelData[level].tileSize}
-            isCanWalk={isCanWalk}
+            isCanWalk={count === 0}
           />
 
           <Map

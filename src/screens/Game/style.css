@@ -10,12 +10,13 @@
 }
 
 .main-game-container .title {
-  background-color: inherit;
+  background-color: initial;
   border: none;
   color: white;
   font-size: 36px;
   cursor: pointer;
   user-select: none;
+  z-index: 100;
 }
 
 .main-game-container .finish-text {
