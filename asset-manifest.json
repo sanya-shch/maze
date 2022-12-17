@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/maze/static/css/main.d3521f07.css",
-    "main.js": "/maze/static/js/main.2bc734db.js",
+    "main.js": "/maze/static/js/main.377c8d54.js",
     "start_0_0.js": "/maze/static/js/start_0_0.3660a321.chunk.js",
     "1_0_0.js": "/maze/static/js/1_0_0.2e6e2660.chunk.js",
     "1_0_1.js": "/maze/static/js/1_0_1.61389c53.chunk.js",
@@ -80,10 +80,10 @@
     "3_4_4.js": "/maze/static/js/3_4_4.2dbed7ea.chunk.js",
     "index.html": "/maze/index.html",
     "main.d3521f07.css.map": "/maze/static/css/main.d3521f07.css.map",
-    "main.2bc734db.js.map": "/maze/static/js/main.2bc734db.js.map"
+    "main.377c8d54.js.map": "/maze/static/js/main.377c8d54.js.map"
   },
   "entrypoints": [
     "static/css/main.d3521f07.css",
-    "static/js/main.2bc734db.js"
+    "static/js/main.377c8d54.js"
   ]
 }
