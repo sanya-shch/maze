@@ -121,13 +121,17 @@ export default function useWalk(maxSteps, spriteSize, mapPartCount, mapSize) {
   };
 
   const walk = (dir) => {
-    setDir((prev) => {
-      if (directions[dir] === prev && isCanMove(getNextPosition(dir))) {
-        move(dir);
-      }
+    setTimeout(() => {
+      setDir((prev) => {
 
-      return directions[dir];
-    });
+        if (directions[dir] === prev && isCanMove(getNextPosition(dir))) {
+          move(dir);
+        }
+
+        return directions[dir];
+      });
+    }, 0);
+
     setStep((prev) => (prev < maxSteps - 1 ? prev + 1 : 0));
   };
 

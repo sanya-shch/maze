@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useLayoutEffect, useState } from "react";
 
 import useKeyPress from "../../hooks/use-key-press";
 import useWalk from "../../hooks/use-walk";
-
+import { getSkinImport } from "../../helpers/getSkinImport";
 import Actor from "../Actor";
 
 function Player({
@@ -24,19 +24,31 @@ function Player({
     w: spriteSize,
   };
 
+  const [skinData, setSkinData] = useState(null);
+
+  useLayoutEffect(() => {
+    getSkinImport(skin)
+      .then((module) => module.default)
+      .then((dep) => {
+        setSkinData(dep);
+      });
+  }, [skin]);
+
   useKeyPress((e) => {
     if (/^Arrow/.test(e.key)) {
       const dir = e.key.replace("Arrow", "").toLowerCase();
 
-      isCanWalk && walk(dir);
+      isCanWalk && skinData && walk(dir);
     }
 
     e.preventDefault();
   });
 
+  if (!skinData) return null;
+
   return (
     <Actor
-      sprite={`/assets/skins/${skin}.png`}
+      sprite={skinData}
       data={data}
       step={isCanWalk ? step : 1}
       dir={isCanWalk ? dir : 0}

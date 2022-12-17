@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { SIZE } from "../../constants";
+import { getTileSetImport } from "../../helpers/getTileSetImport";
 
 export default function Map({ tiles, tileset, size, dropTile }) {
+  const [tileSetData, setTileSetData] = useState(null);
+
+  useEffect(() => {
+    getTileSetImport(tileset)
+      .then((module) => module.default)
+      .then((dep) => {
+        setTileSetData(dep);
+      });
+  }, [tileset]);
+
+  if (!tileSetData) return null;
+
   return (
     <div
       style={{
@@ -26,7 +39,7 @@ export default function Map({ tiles, tileset, size, dropTile }) {
                   height: SIZE,
                   ...(tile.v_bg
                     ? {
-                        background: `url(/assets/maps/${tileset}.png) -${tile.v_bg.x}px -${tile.v_bg.y}px no-repeat`,
+                        background: `url(${tileSetData}) -${tile.v_bg.x}px -${tile.v_bg.y}px no-repeat`,
                       }
                     : {}),
                 }}
@@ -50,7 +63,7 @@ export default function Map({ tiles, tileset, size, dropTile }) {
                   height: SIZE,
                   ...(tile.v
                     ? {
-                        background: `url(/assets/maps/${tileset}.png) -${tile.v.x}px -${tile.v.y}px no-repeat`,
+                        background: `url(${tileSetData}) -${tile.v.x}px -${tile.v.y}px no-repeat`,
                       }
                     : {}),
                 }}

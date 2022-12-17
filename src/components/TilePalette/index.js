@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { SIZE } from "../../constants";
+import dragHandle from "../../assets/drag-handle.png";
+import { getTileSetImport } from "../../helpers/getTileSetImport";
 
 export default function TilePalette({
   tileset,
@@ -27,6 +29,18 @@ export default function TilePalette({
     tiles.push(row);
   }
 
+  const [tileSetData, setTileSetData] = useState(null);
+
+  useEffect(() => {
+    getTileSetImport(tileset)
+      .then((module) => module.default)
+      .then((dep) => {
+        setTileSetData(dep);
+      });
+  }, [tileset]);
+
+  // if (!tileSetData) return null;
+
   return (
     <div
       id="palette"
@@ -47,7 +61,7 @@ export default function TilePalette({
       >
         <img
           id="handle"
-          src="/assets/drag-handle.png"
+          src={dragHandle}
           alt=""
           style={{
             cursor: "grab",
@@ -63,7 +77,7 @@ export default function TilePalette({
         >
           <div
             style={{
-              background: `url(/assets/maps/${tileset}.png) -${activeTile.x}px -${activeTile.y}px no-repeat`,
+              background: `url(${tileSetData}) -${activeTile.x}px -${activeTile.y}px no-repeat`,
               width: SIZE,
               height: SIZE,
               top: 2,
@@ -129,7 +143,7 @@ export default function TilePalette({
               style={{
                 borderTop: "1px solid #333",
                 borderRight: "1px solid #333",
-                background: `url(/assets/maps/${tileset}.png) -${x * SIZE}px -${
+                background: `url(${tileSetData}) -${x * SIZE}px -${
                   y * SIZE
                 }px no-repeat`,
                 width: SIZE,
